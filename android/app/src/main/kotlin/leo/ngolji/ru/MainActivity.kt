@@ -1,4 +1,4 @@
-package leo.citfici.ru
+package leo.ngolji.ru
 
 import io.flutter.embedding.android.FlutterActivity
 

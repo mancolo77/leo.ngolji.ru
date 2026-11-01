@@ -1,112 +1,118 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Leon Signature Brand Colors
-  static const Color primary = Color(0xFFE5192D); // Leon Signature Crimson Red
-  static const Color primaryDark = Color(0xFFB80E1E);
-  static const Color primaryLight = Color(0xFFFF2B3F);
-  static const Color secondary = Color(0xFFFFFFFF); // Leon Pure White
+  // ПАЛИТРА ПО ТЗ (Leo / Леон):
+  // • #F1F2F4 — основной светло-серый фон.
+  // • #FFFFFF — карточки статей, матчей и достижений.
+  // • #1C1F20 — верхняя панель и нижняя навигация.
+  // • #E0E2E5 — фон фильтров и заголовков групп.
+  // • #EEF0F2 — поля поиска и второстепенные кнопки.
+  // • #109E59 — основной зелёный акцент: кнопки, активные элементы, прогресс.
+  // • #087A43 — текстовые акценты на светлом фоне, кнопки с белым текстом.
+  // • #ED0028 — дополнительный красный акцент для информационного баннера и декоративных деталей.
+  // • #1D2123 — основной текст.
+  // • #626B75 — второстепенные подписи.
+  // • #E5E7EB — разделители и контуры.
+  // • #FFFFFF — текст на тёмных поверхностях.
+
+  static const Color background = Color(0xFFF1F2F4);
+  static const Color surfaceCard = Color(0xFFFFFFFF);
+  static const Color darkNav = Color(0xFF1C1F20);
+  static const Color filterBg = Color(0xFFE0E2E5);
+  static const Color surfaceSecondary = Color(0xFFEEF0F2);
+  static const Color primary = Color(0xFF087A43); // Тёмно-зеленый для кнопок с белым текстом
+  static const Color greenLight = Color(0xFF109E59); // Светло-зеленый акцент
+  static const Color accentRed = Color(0xFFED0028); // Красный акцент для баннера
+  static const Color textMain = Color(0xFF1D2123);
+  static const Color textSecondary = Color(0xFF626B75);
+  static const Color border = Color(0xFFE5E7EB);
+  static const Color onPrimary = Color(0xFFFFFFFF);
+
+  // Совместимость
+  static const Color surface = surfaceCard;
+  static const Color surfaceElevated = surfaceSecondary;
+  static const Color surfaceBorder = border;
+  static const Color textPrimary = textMain;
+  static const Color textMuted = textSecondary;
+  static const Color secondary = darkNav;
+  static const Color accentRose = accentRed;
+  static const Color accentGold = Color(0xFFFFB800);
   static const Color accentPurple = Color(0xFF9C27B0);
-  static const Color accentGold = Color(0xFFFFB800); // Leon Trophy Gold
-  static const Color accentRose = Color(0xFFE5192D);
   static const Color accentOrange = Color(0xFFFF6D00);
-  static const Color accentGreen = Color(0xFF00C853); // Leon Pitch Green
+  static const Color accentGreen = greenLight;
 
-  // Background Surfaces (Leon Obsidian Carbon & Pure Stealth Black)
-  static const Color background = Color(0xFF0C0C0E); // Deep Obsidian Black
-  static const Color surface = Color(0xFF141418); // Dark Stealth Surface
-  static const Color surfaceCard = Color(0xFF1C1C22); // Matte Carbon Card
-  static const Color surfaceElevated = Color(0xFF26262E);
-  static const Color surfaceBorder = Color(0xFF2C2C36); // Crisp Card Border
+  static const double cardRadius = 16.0;
+  static const double buttonRadius = 12.0;
+  static const double screenPadding = 16.0;
+  static const double buttonHeight = 48.0;
 
-  // Text Colors
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFF9E9EB0);
-  static const Color textMuted = Color(0xFF666675);
+  static List<BoxShadow> get cardShadow => [
+        BoxShadow(
+          color: Colors.black.withAlpha(12),
+          blurRadius: 8,
+          offset: const Offset(0, 2),
+        ),
+      ];
 
-  // Leon Signature Brand Gradients
-  static const LinearGradient heroGradient = LinearGradient(
-    colors: [Color(0xFF2B0A0E), Color(0xFF141318)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient streakGradient = LinearGradient(
-    colors: [Color(0xFF2D1606), Color(0xFF161318)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient rewardsGradient = LinearGradient(
-    colors: [Color(0xFF2E0A0E), Color(0xFF151419)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient profileGradient = LinearGradient(
-    colors: [Color(0xFF1E1E26), Color(0xFF101014)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  // Box Shadows
   static List<BoxShadow> get neonGlow => [
         BoxShadow(
-          color: primary.withAlpha(60),
-          blurRadius: 20,
+          color: greenLight.withAlpha(50),
+          blurRadius: 16,
           spreadRadius: 1,
         ),
       ];
 
-  static ThemeData get darkTheme {
+  static const LinearGradient heroGradient = LinearGradient(
+    colors: [primary, greenLight],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+  static const LinearGradient streakGradient = heroGradient;
+  static const LinearGradient profileGradient = heroGradient;
+  static const LinearGradient rewardsGradient = heroGradient;
+
+  static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       scaffoldBackgroundColor: background,
       primaryColor: primary,
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         primary: primary,
-        secondary: secondary,
-        surface: surface,
-        error: accentRose,
+        secondary: greenLight,
+        surface: surfaceCard,
+        error: accentRed,
+        onPrimary: onPrimary,
+        onSurface: textMain,
       ),
-      textTheme: GoogleFonts.interTextTheme(
-        ThemeData.dark().textTheme,
-      ).apply(
-        bodyColor: textPrimary,
-        displayColor: textPrimary,
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: background,
-        elevation: 0,
-        centerTitle: false,
-        titleTextStyle: GoogleFonts.outfit(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: textPrimary,
-          letterSpacing: 0.5,
-        ),
-        iconTheme: const IconThemeData(color: textPrimary),
-      ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: surface,
-        selectedItemColor: primary,
-        unselectedItemColor: textMuted,
-        elevation: 8,
+      fontFamily: null, // Системный шрифт
+      textTheme: const TextTheme(
+        headlineLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: textMain),
+        headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: textMain),
+        titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textMain),
+        titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: textMain),
+        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: textMain),
+        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textSecondary),
+        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: textSecondary),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: primary,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          textStyle: GoogleFonts.outfit(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          foregroundColor: onPrimary,
+          minimumSize: const Size(0, buttonHeight),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonRadius)),
+          elevation: 0,
         ),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: background,
+        elevation: 0,
+        centerTitle: false,
+        titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: textMain),
+        iconTheme: IconThemeData(color: textMain),
       ),
     );
   }
+
+  static ThemeData get darkTheme => lightTheme;
 }
